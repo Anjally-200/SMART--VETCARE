@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Data folders
+datasets/
+test_images/
+training_data/
+preprocessing/
+processed_data/
+
+# Test files
+test_*.jpg
+test_*_model.py
+
+# Trained models
+*.h5
+*.keras
+database.db
+
+# Virtual environment
+venv/
+.env/
+
+# Streamlit cache
+.streamlit/
+
+# OS files
+Thumbs.db
+.DS_Store
