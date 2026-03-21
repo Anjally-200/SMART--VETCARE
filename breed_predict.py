@@ -7,6 +7,10 @@ import tensorflow as tf
 from PIL import Image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
+# -------- DATABASE IMPORTS --------
+import sqlite3
+from datetime import datetime
+
 @st.cache_resource
 def load_breed_model():
     return tf.keras.models.load_model("breed_model.keras")
@@ -35,12 +39,11 @@ def app():
 
         if st.button("🔍 Predict Breed"):
             with st.spinner("Analyzing image..."):
-                # Preprocessing (match training exactly)
-                img = image.convert('RGB')  # ensure RGB
+                # Preprocessing
+                img = image.convert('RGB')
                 img = img.resize((224, 224))
                 img_array = np.array(img, dtype=np.float32)
                 
-                # Apply MobileNetV2 preprocessing (CRITICAL!)
                 img_array = preprocess_input(img_array)
                 img_array = np.expand_dims(img_array, axis=0)
 
@@ -48,5 +51,32 @@ def app():
                 index = np.argmax(prediction)
                 confidence = prediction[0][index] * 100
 
-            st.success(f"🐮 Predicted Breed: **{class_names[index]}**")
+                # Check if confidence is low, classify as "others"
+                if confidence < 50.0:
+                    predicted_breed = "others"
+                else:
+                    predicted_breed = class_names[index]
+
+            st.success(f"🐮 Predicted Breed: **{predicted_breed}**")
             st.info(f"Confidence: {confidence:.2f}%")
+
+            # -------- SAVE TO HISTORY --------
+            try:
+                conn = sqlite3.connect("database.db")
+                c = conn.cursor()
+
+                c.execute("""
+                INSERT INTO breed_history (user_id, breed, confidence, created_at)
+                VALUES (?, ?, ?, ?)
+                """, (
+                    st.session_state.user_id,
+                    predicted_breed,
+                    float(confidence),   # ⭐ FIX: ensure float
+                    datetime.now()
+                ))
+
+                conn.commit()
+                conn.close()
+
+            except Exception as e:
+                st.error(f"Database error: {e}")
