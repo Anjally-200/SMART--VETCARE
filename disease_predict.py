@@ -76,7 +76,7 @@ disease_details = {
 
 # ---------------- MAIN APP ----------------
 def app():
-    st.title("🦠 Disease Prediction")
+    st.title(" Disease Prediction")
     st.write("Upload a cattle image to detect disease")
 
     uploaded_file = st.file_uploader(
@@ -90,7 +90,7 @@ def app():
         st.image(image, caption="Uploaded Image", use_container_width=True)
 
         # -------- PREDICT BUTTON --------
-        if st.button("🩺 Predict Disease"):
+        if st.button(" Predict Disease"):
 
             with st.spinner("Analyzing image..."):
                 img = image.convert('RGB')
@@ -145,44 +145,44 @@ def app():
         disease = st.session_state.predicted_disease
         confidence = st.session_state.confidence
 
-        st.success(f"🧪 Predicted Disease: **{disease}**")
+        st.success(f" Predicted Disease: **{disease}**")
         st.info(f"Confidence: **{confidence:.2f}%**")
 
         details = disease_details.get(disease)
 
         if details:
-            st.markdown("## 🧠 AI Instant Guidance")
+            st.markdown("##  AI Instant Guidance")
 
             # Cause
-            st.markdown("### 📌 Cause")
+            st.markdown("###  Cause")
             for c in details["cause"]:
                 st.write("•", c)
 
             # Guidance
-            st.markdown("### 💊 What You Should Do")
+            st.markdown("###  What You Should Do")
             for g in details["guidance"]:
                 st.write("•", g)
 
             # Prevention
-            st.markdown("### 🛡 Prevention")
+            st.markdown("###  Prevention")
             for p in details["prevention"]:
                 st.write("•", p)
 
             # Severity
-            st.markdown("### 🚨 Severity Level")
+            st.markdown("###  Severity Level")
             severity = details["severity"]
 
             if severity == "High":
-                st.error(f"🚨 {severity} - Immediate action required!")
+                st.error(f" {severity} - Immediate action required!")
             elif severity == "Medium":
-                st.warning(f"⚠️ {severity} - Monitor carefully")
+                st.warning(f" {severity} - Monitor carefully")
             else:
-                st.success(f"✅ {severity} - Low risk")
+                st.success(f" {severity} - Low risk")
 
         # -------- CONSULTATION BUTTON --------
         st.markdown("---")
 
-        if st.button("👩‍⚕️ Request Veterinary Consultation"):
+        if st.button(" Request Veterinary Consultation"):
 
             try:
                 conn = sqlite3.connect("database.db")
@@ -213,7 +213,7 @@ def app():
                 conn.commit()
                 conn.close()
 
-                st.success("✅ Consultation request sent successfully!")
+                st.success(" Consultation request sent successfully!")
                 st.rerun()
 
             except Exception as e:

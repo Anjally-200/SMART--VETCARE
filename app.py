@@ -41,19 +41,57 @@ if not st.session_state.logged_in:
         doctor_login.app()
 
     elif menu == "Admin Login":
-        st.title("🛠 Admin Login")
+        if "admin_email" not in st.session_state:
+            st.session_state.admin_email = "admin@gmail.com"
+        if "admin_password" not in st.session_state:
+            st.session_state.admin_password = "admin123"
+        if "show_admin_reset" not in st.session_state:
+            st.session_state.show_admin_reset = False
 
-        email = st.text_input("Admin Email")
-        password = st.text_input("Admin Password", type="password")
+        if not st.session_state.show_admin_reset:
+            st.title(" Admin Login")
 
-        if st.button("Login as Admin"):
-            if email == "admin@gmail.com" and password == "admin123":
-                st.session_state.logged_in = True
-                st.session_state.role = "admin"
-                st.session_state.user_name = "Admin"
+            email = st.text_input("Admin Email")
+            password = st.text_input("Admin Password", type="password")
+
+            if st.button("Login as Admin"):
+                if email == st.session_state.admin_email and password == st.session_state.admin_password:
+                    st.session_state.logged_in = True
+                    st.session_state.role = "admin"
+                    st.session_state.user_name = "Admin"
+                    st.rerun()
+                else:
+                    st.error("Invalid admin credentials")
+
+            if st.button("Forgot Password?"):
+                st.session_state.show_admin_reset = True
                 st.rerun()
-            else:
-                st.error("Invalid admin credentials")
+
+        else:
+            st.title(" Admin Password Reset")
+
+            with st.form("admin_reset_form"):
+                reset_email = st.text_input("Admin Email")
+                new_password = st.text_input("New Admin Password", type="password")
+                confirm_password = st.text_input("Confirm New Admin Password", type="password")
+                reset_submitted = st.form_submit_button("Reset Admin Password")
+
+            if reset_submitted:
+                if not reset_email or not new_password or not confirm_password:
+                    st.error("Please complete all fields")
+                elif new_password != confirm_password:
+                    st.error("Passwords do not match")
+                elif reset_email != st.session_state.admin_email:
+                    st.error("Admin email does not match")
+                else:
+                    st.session_state.admin_password = new_password
+                    st.success("Admin password updated successfully. Please login.")
+                    st.session_state.show_admin_reset = False
+                    st.rerun()
+
+            if st.button("Back to Login"):
+                st.session_state.show_admin_reset = False
+                st.rerun()
 
 
 # ---------------- LOGGED IN ----------------
@@ -144,6 +182,6 @@ else:
             st.rerun()
 
     else:
-        st.error("⚠️ Role not set properly. Please login again.")
+        st.error(" Role not set properly. Please login again.")
         st.session_state.clear()
         st.rerun()

@@ -26,7 +26,7 @@ class_names = [
 ]
 
 def app():
-    st.title("🐄 Breed Prediction")
+    st.title(" Breed Prediction")
 
     uploaded_file = st.file_uploader(
         "Upload cattle image",
@@ -37,7 +37,7 @@ def app():
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded Image", use_container_width=True)
 
-        if st.button("🔍 Predict Breed"):
+        if st.button(" Predict Breed"):
             with st.spinner("Analyzing image..."):
                 # Preprocessing
                 img = image.convert('RGB')
@@ -57,7 +57,7 @@ def app():
                 else:
                     predicted_breed = class_names[index]
 
-            st.success(f"🐮 Predicted Breed: **{predicted_breed}**")
+            st.success(f" Predicted Breed: **{predicted_breed}**")
             st.info(f"Confidence: {confidence:.2f}%")
 
             # -------- SAVE TO HISTORY --------

@@ -85,7 +85,7 @@ def delete_doctor(doctor_id):
 
 # ---------------- MAIN APP ----------------
 def app():
-    st.title("🛡️ Admin Panel")
+    st.title(" Admin Panel")
 
     tab1, tab2, tab3 = st.tabs(["📊 Dashboard", "➕ Add Doctor", "👥 Doctors"])
 

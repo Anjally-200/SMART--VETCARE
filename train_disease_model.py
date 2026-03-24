@@ -51,7 +51,7 @@ val_gen = datagen.flow_from_directory(
 )
 
 NUM_CLASSES = train_gen.num_classes
-print("✅ Disease classes:", train_gen.class_indices)
+print(" Disease classes:", train_gen.class_indices)
 
 # ================================
 # CLASS WEIGHTS (FIX IMBALANCE)
@@ -62,7 +62,7 @@ class_weights = compute_class_weight(
     y=train_gen.classes
 )
 class_weights = dict(enumerate(class_weights))
-print("⚖️ Class weights:", class_weights)
+print(" Class weights:", class_weights)
 
 # ================================
 # MODEL (IMAGENET)
@@ -104,4 +104,4 @@ history = model.fit(
 # SAVE
 # ================================
 model.save("disease_model.keras")
-print("✅ Disease model saved as disease_model.keras")
+print(" Disease model saved as disease_model.keras")

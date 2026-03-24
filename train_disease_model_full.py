@@ -29,7 +29,7 @@ MODEL_NAME = "disease_model.keras"
 # ==================================================
 # STEP 1: DATASET CLEANING (UNCHANGED – GOOD)
 # ==================================================
-print("\n🔍 STEP 1: Checking dataset integrity...\n")
+print("\n STEP 1: Checking dataset integrity...\n")
 
 valid_ext = (".jpg", ".jpeg", ".png")
 total_removed = 0
@@ -64,12 +64,12 @@ for cls in os.listdir(DATASET_DIR):
     total_removed += removed
     print(f"{cls:<15} -> cleaned {removed} files")
 
-print(f"\n✅ Dataset cleaning completed. Total removed: {total_removed}\n")
+print(f"\n Dataset cleaning completed. Total removed: {total_removed}\n")
 
 # ==================================================
 # STEP 2: DATA GENERATORS (FIXED)
 # ==================================================
-print("🧪 STEP 2: Creating data generators...\n")
+print(" STEP 2: Creating data generators...\n")
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -107,12 +107,12 @@ val_gen = val_datagen.flow_from_directory(
 )
 
 NUM_CLASSES = train_gen.num_classes
-print("✅ Class indices:", train_gen.class_indices)
+print(" Class indices:", train_gen.class_indices)
 
 # ==================================================
 # STEP 3: CLASS WEIGHTS (CORRECT – KEEP)
 # ==================================================
-print("\n⚖️ STEP 3: Computing class weights...\n")
+print("\n STEP 3: Computing class weights...\n")
 
 labels = train_gen.classes
 
@@ -123,12 +123,12 @@ weights = compute_class_weight(
 )
 
 class_weights = dict(zip(np.unique(labels), weights))
-print("✅ Class weights:", class_weights)
+print(" Class weights:", class_weights)
 
 # ==================================================
 # STEP 4: MODEL (UPGRADED)
 # ==================================================
-print("\n🧠 STEP 4: Building model...\n")
+print("\n STEP 4: Building model...\n")
 
 base_model = MobileNetV2(
     include_top=False,
@@ -167,7 +167,7 @@ callbacks = [
 # ==================================================
 # STEP 6: TRAIN (PHASE 1)
 # ==================================================
-print("\n🚀 STEP 6: Training (feature extraction)...\n")
+print("\n STEP 6: Training (feature extraction)...\n")
 
 history = model.fit(
     train_gen,
@@ -180,7 +180,7 @@ history = model.fit(
 # ==================================================
 # STEP 7: FINE-TUNING (THIS BOOSTS TO 85%+)
 # ==================================================
-print("\n🔥 STEP 7: Fine-tuning top layers...\n")
+print("\n STEP 7: Fine-tuning top layers...\n")
 
 for layer in base_model.layers[-30:]:
     layer.trainable = True
@@ -203,4 +203,4 @@ history_fine = model.fit(
 # STEP 8: SAVE MODEL
 # ==================================================
 model.save(MODEL_NAME)
-print(f"\n✅ Disease model saved as {MODEL_NAME}")
+print(f"\n Disease model saved as {MODEL_NAME}")

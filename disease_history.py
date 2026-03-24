@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 
 def app():
-    st.title("🦠 Disease Prediction History")
+    st.title(" Disease Prediction History")
 
     # Check if user is logged in
     if "user_id" not in st.session_state:
@@ -48,9 +48,9 @@ def app():
             date = row[3]
 
             st.markdown("---")
-            st.write("🦠 Disease:", disease)
-            st.write("📊 Confidence:", f"{confidence:.2f}%")
-            st.write("🕒 Date:", date)
+            st.write(" Disease:", disease)
+            st.write(" Confidence:", f"{confidence:.2f}%")
+            st.write(" Date:", date)
 
             # ✅ DELETE BUTTON
             if st.button("🗑 Delete", key=f"disease_del_{record_id}"):

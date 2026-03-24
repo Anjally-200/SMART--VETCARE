@@ -16,7 +16,7 @@ def split_dataset(SRC_DIR, DEST_DIR, dataset_name):
 
     # Safety check
     if not os.path.exists(SRC_DIR):
-        print("❌ Source directory does not exist:", SRC_DIR)
+        print(" Source directory does not exist:", SRC_DIR)
         return
 
     for class_name in os.listdir(SRC_DIR):
@@ -31,7 +31,7 @@ def split_dataset(SRC_DIR, DEST_DIR, dataset_name):
         ]
 
         if len(images) == 0:
-            print(f"⚠️ Skipping empty class: {class_name}")
+            print(f" Skipping empty class: {class_name}")
             continue
 
         random.shuffle(images)
@@ -56,7 +56,7 @@ def split_dataset(SRC_DIR, DEST_DIR, dataset_name):
                     os.path.join(split_dir, img)
                 )
 
-        print(f"✅ Split completed for: {class_name}")
+        print(f" Split completed for: {class_name}")
 
 
 # =========================
@@ -77,4 +77,4 @@ split_dataset(
     "BREED"
 )
 
-print("\n🎉 training_data created successfully for diseases and breeds!")
+print("\n training_data created successfully for diseases and breeds!")

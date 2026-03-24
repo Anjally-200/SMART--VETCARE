@@ -102,7 +102,7 @@ def get_prediction_trends(user_id, days=30):
 
 
 def app():
-    st.markdown(f"## 🐄 Farmer Dashboard — Welcome {st.session_state.user_name}")
+    st.markdown(f"##  Farmer Dashboard — Welcome {st.session_state.user_name}")
     st.write("---")
 
     user_id = st.session_state.user_id
@@ -132,22 +132,22 @@ def app():
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        if st.button("🧾 Breed Prediction", use_container_width=True):
+        if st.button(" Breed Prediction", use_container_width=True):
             st.session_state.page = "Breed Prediction"
             st.rerun()
 
     with col2:
-        if st.button("🦠 Disease Prediction", use_container_width=True):
+        if st.button(" Disease Prediction", use_container_width=True):
             st.session_state.page = "Disease Prediction"
             st.rerun()
 
     with col3:
-        if st.button("📞 Consultation", use_container_width=True):
+        if st.button(" Consultation", use_container_width=True):
             st.session_state.page = "Support"
             st.rerun()
 
     with col4:
-        if st.button("📊 History", use_container_width=True):
+        if st.button(" History", use_container_width=True):
             st.session_state.page = "Breed History"
             st.rerun()
 
@@ -177,7 +177,7 @@ def app():
         st.plotly_chart(fig, use_container_width=True)
 
     # Tips
-    st.markdown("### 💡 Health Tips")
+    st.markdown("###  Health Tips")
     tips_col1, tips_col2 = st.columns(2)
     
     with tips_col1:
@@ -187,7 +187,7 @@ def app():
 
     # Alerts
     if stats['alerts_count'] > 0:
-        st.error(f"⚠️ {stats['alerts_count']} health alerts detected! Consider consulting a veterinarian.")
+        st.error(f" {stats['alerts_count']} health alerts detected! Consider consulting a veterinarian.")
 
 
 # ✅ FIXED HERE (removed invalid tag)

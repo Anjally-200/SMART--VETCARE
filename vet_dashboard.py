@@ -120,7 +120,7 @@ def app():
     # Header
     col1, col2 = st.columns([4, 1])
     with col1:
-        st.markdown("# 👩‍⚕️ Veterinary Dashboard")
+        st.markdown("#  Veterinary Dashboard")
         st.markdown("*Manage consultation requests and provide expert guidance*")
     
     st.write("---")
@@ -130,28 +130,28 @@ def app():
         stats = get_statistics()
         
         # Display metrics
-        st.markdown("### 📊 Dashboard Overview")
+        st.markdown("###  Dashboard Overview")
         metric_cols = st.columns(5)
         
         with metric_cols[0]:
-            st.metric("📋 Total Requests", stats['total'], delta=None)
+            st.metric(" Total Requests", stats['total'], delta=None)
         
         with metric_cols[1]:
-            st.metric("⏳ Pending", stats['pending'], delta=None)
+            st.metric(" Pending", stats['pending'], delta=None)
         
         with metric_cols[2]:
-            st.metric("✅ Approved", stats['approved'], delta=None)
+            st.metric(" Approved", stats['approved'], delta=None)
         
         with metric_cols[3]:
             st.metric("✔ Completed", stats['completed'], delta=None)
         
         with metric_cols[4]:
-            st.metric("❌ Rejected", stats['rejected'], delta=None)
+            st.metric(" Rejected", stats['rejected'], delta=None)
         
         st.write("---")
         
         # Filter options
-        st.markdown("### 🔍 Filter Requests")
+        st.markdown("###  Filter Requests")
         filter_cols = st.columns(3)
         
         with filter_cols[0]:
@@ -192,7 +192,7 @@ def app():
         conn.close()
 
         if rows:
-            st.markdown(f"### 📝 Consultation Requests ({len(rows)})")
+            st.markdown(f"###  Consultation Requests ({len(rows)})")
             
             for idx, row in enumerate(rows):
                 request_id = row[0]
@@ -214,61 +214,61 @@ def app():
                 status_color = status_colors.get(status, "#999999")
                 
                 # Create expandable card
-                with st.expander(f"🐄 Request #{request_id} | Disease: {disease} | Status: {status}", expanded=False):
+                with st.expander(f" Request #{request_id} | Disease: {disease} | Status: {status}", expanded=False):
                     
                     # Request details
                     detail_cols = st.columns(4)
                     
                     with detail_cols[0]:
-                        st.markdown(f"**👤 User ID**")
+                        st.markdown(f"** User ID**")
                         st.write(f"#{user_id}")
                     
                     with detail_cols[1]:
-                        st.markdown(f"**🦠 Disease**")
+                        st.markdown(f"** Disease**")
                         st.write(f"{disease}")
                     
                     with detail_cols[2]:
-                        st.markdown(f"**📅 Date**")
+                        st.markdown(f"** Date**")
                         st.write(f"{created_at}")
                     
                     with detail_cols[3]:
-                        st.markdown(f"**📌 Status**")
+                        st.markdown(f"** Status**")
                         st.markdown(f"<div style='background-color: {status_color}; color: white; padding: 8px 12px; border-radius: 20px; text-align: center; font-weight: bold;'>{status}</div>", unsafe_allow_html=True)
                     
                     st.write("---")
                     
                     # AI Guidance
-                    st.markdown("#### 🤖 AI Guidance")
+                    st.markdown("####  AI Guidance")
                     st.info(guidance if guidance else "No AI guidance available")
                     
                     # Doctor Response
-                    st.markdown("#### 👨‍⚕️ Doctor Advice")
+                    st.markdown("####  Doctor Advice")
                     if doctor_response:
-                        st.success(f"✅ {doctor_response}")
+                        st.success(f" {doctor_response}")
                     else:
-                        st.warning("⏳ No advice provided yet")
+                        st.warning(" No advice provided yet")
                     
                     st.write("---")
                     
                     # Action buttons
-                    st.markdown("#### 🎯 Actions")
+                    st.markdown("####  Actions")
                     
                     action_col1, action_col2, action_col3 = st.columns(3)
                     
                     with action_col1:
-                        if st.button("✅ Approve", key=f"approve_{request_id}", use_container_width=True):
+                        if st.button(" Approve", key=f"approve_{request_id}", use_container_width=True):
                             update_status(request_id, "Approved")
                             st.success("Request approved!")
                             st.rerun()
                     
                     with action_col2:
-                        if st.button("❌ Reject", key=f"reject_{request_id}", use_container_width=True):
+                        if st.button(" Reject", key=f"reject_{request_id}", use_container_width=True):
                             update_status(request_id, "Rejected")
                             st.error("Request rejected!")
                             st.rerun()
                     
                     with action_col3:
-                        if st.button("🗑️ Delete", key=f"delete_{request_id}", use_container_width=True):
+                        if st.button(" Delete", key=f"delete_{request_id}", use_container_width=True):
                             delete_request(request_id)
                             st.warning("Request deleted!")
                             st.rerun()
@@ -276,7 +276,7 @@ def app():
                     st.write("---")
                     
                     # Advice input
-                    st.markdown("#### 💬 Provide Your Expert Advice")
+                    st.markdown("####  Provide Your Expert Advice")
                     advice = st.text_area(
                         "Write detailed medical advice and recommendations",
                         key=f"advice_box_{request_id}",
@@ -284,19 +284,19 @@ def app():
                         placeholder="Enter your professional veterinary advice here..."
                     )
 
-                    if st.button("📤 Send Advice", key=f"send_{request_id}", use_container_width=True):
+                    if st.button(" Send Advice", key=f"send_{request_id}", use_container_width=True):
                         if advice.strip():
                             update_advice(request_id, advice)
-                            st.success("✅ Advice sent successfully to farmer!")
+                            st.success(" Advice sent successfully to farmer!")
                             st.rerun()
                         else:
-                            st.warning("⚠️ Please enter advice before sending")
+                            st.warning(" Please enter advice before sending")
 
         else:
-            st.info("📭 No consultation requests. All caught up!")
+            st.info(" No consultation requests. All caught up!")
 
     except Exception as e:
-        st.error(f"❌ Database error: {e}")
+        st.error(f" Database error: {e}")
 
 
 # ---------- RUN ----------

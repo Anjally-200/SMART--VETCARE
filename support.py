@@ -3,7 +3,7 @@ import sqlite3
 from datetime import datetime
 
 def app():
-    st.title("💬 Ask a Veterinarian")
+    st.title(" Ask a Veterinarian")
 
     # ✅ Check login
     if "user_id" not in st.session_state:
@@ -30,14 +30,14 @@ def app():
             conn.commit()
             conn.close()
 
-            st.success("✅ Message sent to doctor!")
+            st.success(" Message sent to doctor!")
             st.rerun()
         else:
-            st.warning("⚠️ Please enter a message")
+            st.warning(" Please enter a message")
 
     # ---------------- VIEW MESSAGES ----------------
     st.markdown("---")
-    st.subheader("📩 Your Messages")
+    st.subheader(" Your Messages")
 
     conn = sqlite3.connect("database.db")
     c = conn.cursor()
@@ -74,14 +74,14 @@ def app():
 
             st.markdown("---")
 
-            st.write("💬 You:", user_msg)
+            st.write(" You:", user_msg)
 
             if reply:
-                st.success(f"👨‍⚕️ Doctor: {reply}")
+                st.success(f" Doctor: {reply}")
             else:
-                st.warning("⏳ Waiting for doctor reply...")
+                st.warning(" Waiting for doctor reply...")
 
-            st.write("📅 Date:", date)
+            st.write(" Date:", date)
 
             # ✅ DELETE BUTTON
             if st.button("🗑 Delete", key=f"user_msg_del_{msg_id}"):

@@ -7,7 +7,7 @@ def get_connection():
     return sqlite3.connect(db_path)
 
 def app():
-    st.title("💬 Farmer Messages")
+    st.title(" Farmer Messages")
 
     conn = get_connection()
     c = conn.cursor()
@@ -39,12 +39,12 @@ def app():
             msg_id, user_id, message, reply, date = msg
 
             st.markdown("---")
-            st.write("👤 User ID:", user_id)
-            st.write("💬 Message:", message)
-            st.write("🕒 Date:", date)
+            st.write(" User ID:", user_id)
+            st.write(" Message:", message)
+            st.write(" Date:", date)
 
             if reply:
-                st.success(f"👨‍⚕️ Reply: {reply}")
+                st.success(f" Reply: {reply}")
 
             # ✍ Reply box
             reply_input = st.text_area(
@@ -70,10 +70,10 @@ def app():
                         conn.commit()
                         conn.close()
 
-                        st.success("✅ Reply sent!")
+                        st.success(" Reply sent!")
                         st.rerun()
                     else:
-                        st.warning("⚠️ Enter reply first")
+                        st.warning(" Enter reply first")
 
             # ✅ DELETE BUTTON
             with col2:

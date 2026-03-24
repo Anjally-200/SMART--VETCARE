@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 
 def app():
-    st.title("🐄 Breed Prediction History")
+    st.title(" Breed Prediction History")
 
     # ---------- DB CONNECTION ----------
     conn = sqlite3.connect("database.db")
@@ -60,9 +60,9 @@ def app():
             date = row[3]
 
             st.markdown("---")
-            st.write("🐄 Breed:", breed)
-            st.write("📊 Confidence:", f"{confidence:.2f}%")
-            st.write("🕒 Date:", date)
+            st.write(" Breed:", breed)
+            st.write(" Confidence:", f"{confidence:.2f}%")
+            st.write(" Date:", date)
 
             # 🔥 DELETE BUTTON
             if st.button("🗑 Delete", key=f"del_{record_id}"):
