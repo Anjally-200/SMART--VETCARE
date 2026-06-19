@@ -8,7 +8,7 @@ def hash_password(pw):
 
 # ---------------- DB CONNECTION ----------------
 def get_connection():
-    conn = sqlite3.connect("vet_care.db")
+    conn = sqlite3.connect("database.db")
     create_tables(conn)
     return conn
 

@@ -129,7 +129,7 @@ def app():
 
     # Buttons
     st.markdown("### Quick Actions")
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
         if st.button(" Breed Prediction", use_container_width=True):
@@ -149,6 +149,11 @@ def app():
     with col4:
         if st.button(" History", use_container_width=True):
             st.session_state.page = "Breed History"
+            st.rerun()
+
+    with col5:
+        if st.button(" My Requests", use_container_width=True):
+            st.session_state.page = "My Requests"
             st.rerun()
 
     st.write("---")
@@ -188,6 +193,32 @@ def app():
     # Alerts
     if stats['alerts_count'] > 0:
         st.error(f" {stats['alerts_count']} health alerts detected! Consider consulting a veterinarian.")
+
+    # Recent Requests (show latest 3)
+    st.markdown("---")
+    st.markdown("### Recent Requests")
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT disease, guidance, doctor_response, status, created_at
+        FROM consultation
+        WHERE user_id = ?
+        ORDER BY created_at DESC
+        LIMIT 3
+    """, (user_id,))
+    requests = cursor.fetchall()
+    conn.close()
+
+    if requests:
+        for disease, guidance, doctor_response, status, created_at in requests:
+            st.write(f"🦠 {disease} | {status} | {created_at}")
+            st.write(f"🤖 {guidance}")
+            if doctor_response:
+                st.write(f"👨‍⚕️ {doctor_response}")
+            st.markdown("---")
+    else:
+        st.info("No requests yet. Use My Requests from navigation.")
 
 
 # ✅ FIXED HERE (removed invalid tag)

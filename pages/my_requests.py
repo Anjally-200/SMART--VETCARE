@@ -2,60 +2,67 @@ import streamlit as st
 import sqlite3
 import os
 
-st.title("📋 My Requests")
-
-# ✅ SAFETY CHECK
-if "user_id" not in st.session_state:
-    st.warning("Please login first")
-    st.stop()
 
 def get_connection():
     db_path = os.path.abspath("database.db")
     return sqlite3.connect(db_path)
 
-user_id = st.session_state.user_id
 
-try:
-    conn = get_connection()
-    c = conn.cursor()
+def app():
+    st.title("📋 My Requests")
 
-    c.execute("""
-    SELECT disease, guidance, doctor_response, status, created_at
-    FROM consultation
-    WHERE user_id=?
-    ORDER BY created_at DESC
-    """, (user_id,))
+    # ✅ SAFETY CHECK
+    if "user_id" not in st.session_state:
+        st.warning("Please login first")
+        st.stop()
 
-    rows = c.fetchall()
-    conn.close()
+    user_id = st.session_state.user_id
 
-    if rows:
-        for row in rows:
-            st.markdown("---")
+    try:
+        conn = get_connection()
+        c = conn.cursor()
 
-            disease, ai_guidance, doctor_response, status, date = row
+        c.execute("""
+        SELECT disease, guidance, doctor_response, status, created_at
+        FROM consultation
+        WHERE user_id=?
+        ORDER BY created_at DESC
+        """, (user_id,))
 
-            st.write("🦠 Disease:", disease)
-            st.write("🤖 AI Guidance:", ai_guidance)
+        rows = c.fetchall()
+        conn.close()
 
-            if doctor_response:
-                st.write("👨‍⚕️ Doctor Advice:", doctor_response)
-            else:
-                st.write("👨‍⚕️ Doctor Advice: Waiting for doctor response...")
+        if rows:
+            for row in rows:
+                st.markdown("---")
 
-            st.write("🕒 Date:", date)
+                disease, ai_guidance, doctor_response, status, date = row
 
-            if status == "Pending":
-                st.warning("📌 Pending")
-            elif status == "Approved":
-                st.info("✅ Approved")
-            elif status == "Completed":
-                st.success("✔ Completed")
-            elif status == "Rejected":
-                st.error("❌ Rejected")
+                st.write("🦠 Disease:", disease)
+                st.write("🤖 AI Guidance:", ai_guidance)
 
-    else:
-        st.info("No requests yet")
+                if doctor_response:
+                    st.write("👨‍⚕️ Doctor Advice:", doctor_response)
+                else:
+                    st.write("👨‍⚕️ Doctor Advice: Waiting for doctor response...")
 
-except Exception as e:
-    st.error(f"Error: {e}")
+                st.write("🕒 Date:", date)
+
+                if status == "Pending":
+                    st.warning("📌 Pending")
+                elif status == "Approved":
+                    st.info("✅ Approved")
+                elif status == "Completed":
+                    st.success("✔ Completed")
+                elif status == "Rejected":
+                    st.error("❌ Rejected")
+
+        else:
+            st.info("No requests yet")
+
+    except Exception as e:
+        st.error(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    app()

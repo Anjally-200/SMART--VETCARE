@@ -93,6 +93,13 @@ if not c.fetchone():
     VALUES (?, ?, ?, ?)
     """, ("User", "user@gmail.com", "123", "user"))
 
+# ---------------- INSERT ADMIN ----------------
+c.execute("SELECT * FROM users WHERE email = 'admin@gmail.com'")
+if not c.fetchone():
+    c.execute("""
+    INSERT INTO users (name, email, password, role)
+    VALUES (?, ?, ?, ?)
+    """, ("Admin", "admin@gmail.com", "admin123", "admin"))
 
 conn.commit()
 conn.close()
