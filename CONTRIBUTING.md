@@ -172,12 +172,12 @@ Avoid:
 
 ## Areas We Need Help With
 
-- 🎨 **UI/UX Improvements**: Streamlit interface enhancements
-- 📊 **Model Improvements**: Better accuracy, faster inference
-- 📚 **Documentation**: Tutorials, guides, video explanations
-- 🧪 **Testing**: Unit tests, integration tests
-- 🔒 **Security**: Authentication improvements, data protection
-- 🌍 **Localization**: Multi-language support
+- **UI/UX Improvements**: Streamlit interface enhancements
+- **Model Improvements**: Better accuracy, faster inference
+- **Documentation**: Tutorials, guides, video explanations
+- **Testing**: Unit tests, integration tests
+- **Security**: Authentication improvements, data protection
+- **Localization**: Multi-language support
 
 ## Questions?
 
@@ -188,4 +188,4 @@ Feel free to:
 
 ---
 
-**Thank you for contributing to Smart Vet Care! 🐄**
+**Thank you for contributing to Smart Vet Care!**

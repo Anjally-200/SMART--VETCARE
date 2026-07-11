@@ -1,4 +1,4 @@
-# Smart Vet Care 🐄
+# Smart Vet Care
 
 **AI-Powered Cattle Disease & Breed Detection System**
 
@@ -6,35 +6,35 @@ A comprehensive deep learning solution for automated cattle health monitoring an
 
 ---
 
-## 📋 Features
+## Features
 
-✅ **Dual Model Architecture**
+**Dual Model Architecture**
 - **Breed Classification**: Identifies 5 cattle breeds (Ayrshire, Brown Swiss, Holstein Friesian, Jersey, Red Dane)
 - **Disease Detection**: Detects livestock diseases (FMD, LSD, Healthy)
 
-✅ **Web Interface** 
+**Web Interface** 
 - Streamlit-based web application for easy image uploads and predictions
 - Real-time inference with pre-trained models
 
-✅ **User Roles**
+**User Roles**
 - **Admin Panel**: System configuration and data management
 - **Veterinarian Dashboard**: Clinical assessment tools
 - **Farmer Dashboard**: Livestock monitoring and health reports
 - **Authentication**: Secure login system for all user types
 
-✅ **AI Consultation Engine**
+**AI Consultation Engine**
 - Breed history tracking
 - Disease history management  
 - Guidance recommendations based on predictions
 
-✅ **Multi-User Support**
+**Multi-User Support**
 - User authentication and authorization
 - Role-based access control
 - Consultation messaging system
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 smart-vet-care/
@@ -89,7 +89,7 @@ smart-vet-care/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -137,7 +137,7 @@ python disease_predict.py path/to/cattle_image.jpg
 
 ---
 
-## 🎯 Model Architecture
+## Model Architecture
 
 Both models use **MobileNetV2** with ImageNet pre-trained weights:
 
@@ -162,7 +162,7 @@ Dense(softmax) - Output Layer
 
 ---
 
-## 📊 Data Preparation
+## Data Preparation
 
 ### Dataset Organization
 ```
@@ -191,7 +191,7 @@ python preprocessing/preprocess_images.py
 
 ---
 
-## 🔐 User Authentication
+## User Authentication
 
 The system supports three user roles:
 
@@ -208,7 +208,7 @@ python create_admin.py
 
 ---
 
-## 🧠 AI Consultation Engine
+## AI Consultation Engine
 
 The `ai_consultation/` module provides:
 - **Breed History**: Track breed identification history per animal
@@ -223,7 +223,7 @@ python ai_consultation/database_setup.py
 
 ---
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 - **Breed Model Accuracy**: Optimized for high precision
 - **Disease Model Accuracy**: Class-weighted training to handle imbalance
@@ -231,7 +231,7 @@ python ai_consultation/database_setup.py
 
 ---
 
-## 🔧 Development & Training
+## Development & Training
 
 ### Training New Models
 
@@ -255,7 +255,7 @@ python check_disease_data.py  # Validate disease dataset
 
 ---
 
-## 📝 Key Implementation Notes
+## Key Implementation Notes
 
 1. **Class Label Consistency**: Folder names in datasets must exactly match class labels in code (e.g., `Ayrshire_cattle`)
 2. **Model Format**: Uses `.keras` format (TF 2.x standard) instead of `.h5`
@@ -264,7 +264,7 @@ python check_disease_data.py  # Validate disease dataset
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 **Model not found error:**
 - Ensure `breed_model.keras` and `disease_model.keras` are in the project root
@@ -284,7 +284,7 @@ python check_disease_data.py  # Validate disease dataset
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 Key packages (see `requirements.txt` for complete list):
 - **TensorFlow 2.x**: Deep learning framework
@@ -295,19 +295,19 @@ Key packages (see `requirements.txt` for complete list):
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Smart Vet Care Development Team**
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please:
 1. Fork the repository
@@ -318,7 +318,7 @@ Contributions are welcome! Please:
 
 ---
 
-## 📞 Support & Contact
+## Support & Contact
 
 For issues, questions, or suggestions:
 - Open an GitHub Issue
@@ -326,7 +326,7 @@ For issues, questions, or suggestions:
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - TensorFlow/Keras team for deep learning framework
 - Streamlit team for web app framework

@@ -294,11 +294,11 @@ black app.py
 
 ## Getting Help
 
-- 📖 Check [README.md](README.md)
-- 📝 Review [CONTRIBUTING.md](CONTRIBUTING.md)
-- 🐛 Search existing [Issues](https://github.com/Anjally-200/SMART--VETCARE/issues)
-- 💬 Create a new Issue with details
+- Check [README.md](README.md)
+- Review [CONTRIBUTING.md](CONTRIBUTING.md)
+- Search existing [Issues](https://github.com/Anjally-200/SMART--VETCARE/issues)
+- Create a new Issue with details
 
 ---
 
-**Happy Coding! 🎉**
+**Happy Coding!**
